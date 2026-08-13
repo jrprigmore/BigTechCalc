@@ -1,0 +1,15 @@
+{
+  "name": "bigtechcalc",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node engine-tests/engine.test.mjs && node engine-tests/workbook-parity.mjs",
+    "smoke": "node engine-tests/smoke.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^30.0.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
+    "xlsx": "^0.18.5"
+  }
+}

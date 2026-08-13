@@ -1,0 +1,7 @@
+node_modules/
+engine-tests/out/
+bigtechcalc-comparison-*.pdf
+bigtechcalc-comparison-*.xlsx
+.claude/
+.DS_Store
+Thumbs.db

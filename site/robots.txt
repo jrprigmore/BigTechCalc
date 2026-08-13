@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Shareable-comparison URLs are fragment-encoded (#s=...), so they are
+# never sent to the server and never crawled. Nothing to disallow.
+
+Sitemap: https://bigtechcalc.com/sitemap.xml

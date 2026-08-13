@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Big Tech Total Compensation Calculator | 10-Year RSU &amp; Offer Comparison | bigtechcalc.com</title>
+<meta name="description" content="Compare up to six job offers over 10 years. Models base, bonus, sign-on, initial RSU grants and annual refreshers with overlapping vesting tranches under conservative, medium and aggressive share-price scenarios. Free PDF and Excel download. No signup.">
+<link rel="canonical" href="https://bigtechcalc.com/">
+
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="PEFG, PLLC">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bigtechcalc.com/">
+<meta property="og:site_name" content="bigtechcalc.com">
+<meta property="og:title" content="Big Tech Total Compensation Calculator — 10-Year RSU &amp; Offer Comparison">
+<meta property="og:description" content="Model 10 years of total comp across multiple offers. Overlapping RSU refreshers, real share-price appreciation, three scenarios, free PDF and Excel export.">
+<meta property="og:image" content="https://bigtechcalc.com/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Big Tech Total Compensation Calculator">
+<meta name="twitter:description" content="Compare offers over 10 years. RSU refreshers, share-price scenarios, free PDF and Excel export.">
+<meta name="twitter:image" content="https://bigtechcalc.com/assets/og-card.png">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@600;700&display=swap">
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- Google AdSense. Replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID
+     after approval. Loaded async so it never blocks first paint. -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://bigtechcalc.com/#app",
+      "name": "Big Tech Total Compensation Calculator",
+      "url": "https://bigtechcalc.com/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "description": "Projects 1 to 10 years of gross compensation for multiple job offers side by side, modelling base salary, annual bonus, sign-on, an initial RSU grant and recurring annual RSU refreshers with overlapping vesting tranches under three share-price growth scenarios.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Compare up to six offers",
+        "10-year projection horizon",
+        "Conservative, medium and aggressive scenarios",
+        "Custom vesting schedules with cliffs",
+        "Overlapping RSU refresher tranche ledger",
+        "Share price appreciation modelling",
+        "Crossover analysis against a current-compensation baseline",
+        "Free PDF and Excel export"
+      ],
+      "publisher": { "@id": "https://bigtechcalc.com/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://bigtechcalc.com/#org",
+      "name": "PEFG, PLLC",
+      "url": "https://bigtechcalc.com/"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://bigtechcalc.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do overlapping RSU refreshers work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Most large technology employers grant a new RSU refresher each year on top of the grants still vesting from prior years. On a four-year vesting schedule with annual refreshers, four separate grants are vesting simultaneously once you reach steady state, usually in year four. Total equity income therefore ramps for the first three or four years and then plateaus. This calculator builds an explicit tranche ledger with one row per grant, so you can see each concurrent grant separately rather than relying on a rolling-window formula." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the calculator account for share price growth?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. RSU grants are denominated in dollars at the grant date, but they pay out in shares valued at whatever the price is on the vest date. The calculator converts grant dollars into a share count at the grant-date price, then values each vesting tranche at the projected price for its vest year. Grant-size growth and share-price appreciation are separate inputs, because they are separate things." }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the conservative, medium and aggressive scenarios?",
+          "acceptedAnswer": { "@type": "Answer", "text": "They are three sets of assumptions covering share-price appreciation, merit increase, bonus payout multiplier, refresher grant growth and how long refreshers continue. Every value is editable. The seeded medium share-price figure of 7 percent per year is a long-run broad-market nominal assumption, not a forecast for any specific company." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the numbers before or after tax?",
+          "acceptedAnswer": { "@type": "Answer", "text": "All figures are gross, before any tax. RSUs are taxed as ordinary income at vest, at the vest-date share price, and are typically subject to statutory supplemental withholding that may be below your marginal rate. Your actual take-home will be materially lower than the totals shown." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the calculator free and does it require an account?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, it is free, and no account, email address or signup is required. PDF and Excel exports are also free and ungated. All calculation happens in your browser; your offer details are never sent to a server." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use trailing stock performance to set the growth rate?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You can look up a ticker's trailing one-year and five-year performance and see it displayed next to the appreciation input as context. It is deliberately not applied automatically. Past performance does not indicate future results, and a hot ticker's trailing CAGR compounded over ten years produces a meaningless number. A configurable ceiling of 20 percent per year is applied by default, and the uncapped figure is always shown alongside so the cap is never silent." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="bigtechcalc.com home">
+      <svg width="252" height="46" viewBox="0 0 252 46" role="img" aria-label="bigtechcalc.com">
+        <rect x="0"  y="30" width="8" height="14" fill="#7FA8CC"/>
+        <rect x="11" y="22" width="8" height="22" fill="#7FA8CC"/>
+        <rect x="22" y="12" width="8" height="32" fill="#7FA8CC"/>
+        <rect x="33" y="2"  width="8" height="42" fill="#F0D080"/>
+        <text x="52" y="33" font-family="IBM Plex Serif, Georgia, serif" font-size="25" font-weight="600" fill="#F0EDE6">bigtech<tspan fill="#F0D080">calc</tspan></text>
+      </svg>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#calculator">Calculator</a>
+      <a href="#results">Results</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Multi-offer projection engine</p>
+    <h1>Big Tech Total Compensation Calculator</h1>
+    <p class="lede">
+      Project up to ten years of gross compensation across multiple offers. Models base salary,
+      annual bonus, sign-on, an initial RSU grant and recurring annual refreshers with
+      overlapping vesting tranches &mdash; under conservative, medium and aggressive
+      share-price scenarios. Free PDF and Excel download, no signup.
+    </p>
+  </div>
+</section>
+
+<div class="wrap">
+<div class="main-grid">
+
+  <!-- ============================== MAIN COLUMN ============================== -->
+  <main>
+
+    <!-- ----------------------------- Global settings ----------------------- -->
+    <section class="panel" id="calculator">
+      <header>
+        <h2>Projection settings</h2>
+        <div class="spacer"></div>
+        <div class="scen-pills" role="group" aria-label="Displayed scenario">
+          <button class="scen-pill" data-scen="conservative" aria-pressed="false">Conservative</button>
+          <button class="scen-pill" data-scen="medium" aria-pressed="true">Medium</button>
+          <button class="scen-pill" data-scen="aggressive" aria-pressed="false">Aggressive</button>
+        </div>
+      </header>
+      <div class="body">
+        <div class="grid-3">
+          <div class="field">
+            <label for="horizon">Projection horizon</label>
+            <select id="horizon">
+              <option value="3">3 years</option>
+              <option value="5">5 years</option>
+              <option value="7">7 years</option>
+              <option value="10" selected>10 years</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="alignment">Comparison alignment</label>
+            <select id="alignment">
+              <option value="tenure" selected>Tenure year (Year 1 = each offer's start)</option>
+              <option value="calendar">Calendar year</option>
+            </select>
+            <span class="hint">Use calendar alignment only if the offers start in different years.</span>
+          </div>
+          <div class="field">
+            <label for="baselineSel">Current compensation baseline</label>
+            <select id="baselineSel"></select>
+            <span class="hint">Crossover is measured against this offer.</span>
+          </div>
+        </div>
+
+        <details id="scenEditor">
+          <summary style="cursor:pointer;font-family:var(--mono);font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;color:var(--navy-mid);padding:6px 0">
+            Edit scenario assumptions
+          </summary>
+          <div class="mt16">
+            <p class="notice flat mb0" style="margin-bottom:14px">
+              <strong>These are seeded assumptions, not forecasts.</strong> The medium 7%/yr share-price
+              figure is a long-run broad-market nominal assumption and is not a projection for any
+              specific company. Every value below is editable.
+            </p>
+            <div class="table-scroll">
+              <table id="scenTable">
+                <thead>
+                  <tr>
+                    <th>Lever</th>
+                    <th class="num">Conservative</th>
+                    <th class="num">Medium</th>
+                    <th class="num">Aggressive</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="inline mt16">
+              <input type="checkbox" id="capOn" checked>
+              <label for="capOn">Cap share-price appreciation at</label>
+              <input type="number" id="capVal" value="20" step="1" min="0" max="100" style="width:80px">
+              <span class="small">%/yr &mdash; the uncapped figure stays visible</span>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- -------------------------------- Offers ----------------------------- -->
+    <section class="panel">
+      <header>
+        <div class="tabs" id="offerTabs" role="tablist" aria-label="Offers"></div>
+        <div class="spacer"></div>
+        <button id="addOffer" class="ghost">+ Add offer</button>
+      </header>
+      <div class="body" id="offerPanes"></div>
+    </section>
+
+    <div id="errorBox"></div>
+
+    <!-- ------------------------------- Results ----------------------------- -->
+    <section id="results">
+
+      <section class="panel">
+        <header><h2>Cumulative gross compensation</h2>
+          <span class="spacer"></span>
+          <span class="small mono" id="summaryScen">Medium scenario</span>
+        </header>
+        <div class="body">
+          <div class="stat-grid" id="statGrid"></div>
+          <p class="panel-note mt16">
+            Range under each card is conservative &rarr; aggressive. All figures are gross, before tax.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header><h2>Cumulative gross by year</h2></header>
+        <div class="chart-box"><div id="chartCumulative"></div></div>
+        <div class="legend" id="legendCumulative"></div>
+      </section>
+
+      <section class="panel">
+        <header>
+          <h2>Annual composition</h2>
+          <div class="spacer"></div>
+          <select id="compositionOffer" style="width:auto;min-width:180px"></select>
+        </header>
+        <div class="chart-box"><div id="chartComposition"></div></div>
+        <div class="legend" id="legendComposition"></div>
+      </section>
+
+      <!-- AD SLOT B — in-content, after the charts, before the detail tables.
+           Natural reading break. Responsive display unit. -->
+      <div class="ad ad-inline" id="ad-inline" aria-hidden="true">
+        <ins class="adsbygoogle" style="display:block;width:100%"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="0000000001"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <span class="ad-placeholder">Advertisement</span>
+      </div>
+
+      <section class="panel">
+        <header>
+          <h2>Year-by-year detail</h2>
+          <div class="spacer"></div>
+          <select id="detailOffer" style="width:auto;min-width:180px"></select>
+        </header>
+        <div class="body tight">
+          <div class="table-scroll"><table id="detailTable"></table></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header>
+          <h2>Equity tranche ledger</h2>
+          <div class="spacer"></div>
+          <select id="ledgerOffer" style="width:auto;min-width:180px"></select>
+        </header>
+        <div class="body">
+          <p class="panel-note" style="margin-bottom:12px">
+            One row per vest event. Overlapping refreshers appear as separate concurrent grants,
+            not as a rolling-window sum &mdash; this is what makes the projection auditable.
+          </p>
+        </div>
+        <div class="body tight">
+          <div class="table-scroll" style="max-height:460px;overflow-y:auto">
+            <table id="ledgerTable"></table>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header><h2>Crossover analysis</h2></header>
+        <div class="body" id="crossoverBox"></div>
+      </section>
+
+      <section class="panel">
+        <header><h2>Unvested equity at horizon</h2></header>
+        <div class="body tight">
+          <div class="table-scroll"><table id="unvestedTable"></table></div>
+        </div>
+        <div class="body">
+          <p class="panel-note mb0">
+            Shares granted inside the horizon whose vest date falls after it. Excluded from the income
+            totals above, but a real factor when comparing offers &mdash; leaving early forfeits them.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header><h2>Download your projection</h2></header>
+        <div class="body">
+          <p style="margin-bottom:14px">
+            Both formats are free and ungated. The Excel file contains the complete tranche ledger
+            and every input, so you can keep modelling offline.
+          </p>
+          <div class="btn-row">
+            <button class="primary" id="btnPdf">Download PDF summary</button>
+            <button class="primary" id="btnXlsx">Download Excel model</button>
+            <button id="btnCsv">Download tranche ledger (CSV)</button>
+            <button id="btnShare">Copy shareable link</button>
+          </div>
+          <p class="small mt16 mb0" id="exportStatus"></p>
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+  <!-- ================================ RAIL ================================ -->
+  <aside class="rail">
+    <!-- AD SLOT A — sticky rail, desktop. Highest RPM position, zero layout
+         shift, never interrupts the calculator flow. -->
+    <div class="ad ad-rail" id="ad-rail" aria-hidden="true">
+      <ins class="adsbygoogle" style="display:block;width:300px;height:600px"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="0000000002"
+           data-ad-format="vertical"></ins>
+      <span class="ad-placeholder">Advertisement</span>
+    </div>
+  </aside>
+
+</div>
+</div>
+
+<!-- ============================== SEO CONTENT ============================== -->
+<div class="content" id="how-it-works">
+  <div class="wrap">
+    <div class="narrow">
+
+      <h2>How big tech compensation actually works</h2>
+      <p>
+        A total compensation package at a large technology employer usually has four moving parts:
+        base salary, an annual cash bonus expressed as a percentage of base, a one-time sign-on
+        bonus paid over the first year or two, and equity in the form of restricted stock units.
+        For senior roles the equity is frequently the largest single component, and it is also the
+        component that simple offer comparisons get wrong most often.
+      </p>
+
+      <h3>Why the fourth year matters more than the first</h3>
+      <p>
+        Your initial RSU grant vests over a fixed schedule &mdash; commonly four years. Separately,
+        most large employers issue an annual <strong>refresher</strong> grant on top of whatever is
+        still vesting. By the fourth year you typically have four grants vesting at once: the tail of
+        the initial grant plus three refreshers. Equity income ramps steeply through years two to
+        four and then plateaus.
+      </p>
+      <p>
+        This is why comparing offers on year-one total compensation is misleading. A front-loaded
+        initial grant looks enormous in year one and contributes almost nothing by year five. A
+        smaller grant paired with a generous refresher policy looks weaker on day one and wins
+        decisively over a ten-year horizon. The crossover analysis in this calculator is built
+        specifically to find the year where that reversal happens.
+      </p>
+
+      <h3>Grant size growth is not share price appreciation</h3>
+      <p>
+        These are two genuinely different things and conflating them is the most common modelling
+        error we see. <em>Grant size growth</em> is the year-over-year increase in the dollar value
+        of each new refresher grant &mdash; a compensation policy decision. <em>Share price
+        appreciation</em> is what the stock itself does, which changes the value of shares you were
+        already granted.
+      </p>
+      <p>
+        A model that only grows the grant size will report that a $400,000 grant pays out exactly
+        $400,000 no matter what the stock does. That is wrong. RSUs are granted as a dollar value,
+        immediately converted to a share count at the grant-date price, and then paid out in shares
+        valued at whatever the price happens to be on each vest date. This calculator does that
+        conversion explicitly, and keeps the two growth rates as separate inputs.
+      </p>
+
+      <h3>Vesting schedules, cliffs and first-vest timing</h3>
+      <p>
+        There is no single industry-standard vesting schedule, and published schedules change. The
+        calculator ships with editable templates &mdash; even four-year, front-loaded, back-loaded,
+        five-year, and quarterly with a one-year cliff &mdash; but you should enter what your own
+        offer letter says rather than trusting a template.
+      </p>
+      <p>
+        First-vest timing deserves particular attention because it is often unstated and it moves
+        the numbers materially. A grant whose first tranche vests in the grant year itself produces
+        a very different year-one total from one whose first tranche vests twelve months later. The
+        calculator makes this an explicit input rather than an assumption buried in a formula.
+      </p>
+
+      <h3>What this calculator does not do</h3>
+      <ul>
+        <li><strong>No tax calculation.</strong> Every figure is gross. RSUs are ordinary income at vest, valued at the vest-date price. Statutory supplemental withholding is frequently below the marginal rate on large vests, which is a common source of unpleasant April surprises.</li>
+        <li><strong>No cost-of-living or relocation adjustment.</strong> A number in Austin and the same number in the Bay Area are not the same number.</li>
+        <li><strong>No 401(k) match, ESPP, or benefits valuation.</strong> These can be worth five figures a year and are not modelled here.</li>
+        <li><strong>No volatility.</strong> The price path is a constant compound rate. Real share prices are not smooth, and the sequence of returns matters when tranches vest on fixed dates.</li>
+      </ul>
+
+      <h2>Glossary</h2>
+      <dl class="glossary">
+        <dt>RSU</dt>
+        <dd>Restricted stock unit. A promise to deliver shares on a future vest date, conditional on continued employment. Taxed as ordinary income at vest, at the vest-date price.</dd>
+        <dt>Initial grant</dt>
+        <dd>The one-time equity award attached to a new-hire offer, typically vesting over three to five years.</dd>
+        <dt>Refresher</dt>
+        <dd>An additional equity grant issued annually on top of unvested grants from prior years. Also called a top-up or annual equity refresh.</dd>
+        <dt>Cliff</dt>
+        <dd>A period at the start of a vesting schedule during which nothing vests. A one-year cliff means leaving at month eleven forfeits the entire grant.</dd>
+        <dt>Tranche</dt>
+        <dd>A single vest event within a grant &mdash; one row in the ledger. A four-year annual schedule produces four tranches per grant.</dd>
+        <dt>Vest date price</dt>
+        <dd>The share price on the day a tranche vests. This, not the grant-date price, determines what the tranche is worth and what you are taxed on.</dd>
+        <dt>Crossover year</dt>
+        <dd>The first year in which one offer's cumulative gross compensation overtakes another's.</dd>
+        <dt>Steady state</dt>
+        <dd>The point at which the number of grants vesting concurrently stops increasing &mdash; year four on a four-year schedule with annual refreshers.</dd>
+      </dl>
+
+      <h2 id="faq">Frequently asked questions</h2>
+
+      <details class="faq"><summary>How do overlapping RSU refreshers work?</summary>
+        <div class="a">Most large technology employers grant a new RSU refresher each year on top of the grants still vesting from prior years. On a four-year schedule with annual refreshers, four separate grants are vesting simultaneously once you reach steady state, usually in year four. Total equity income ramps for the first three or four years and then plateaus. This calculator builds an explicit tranche ledger with one row per grant, so you can see each concurrent grant separately rather than relying on a rolling-window formula that is easy to get wrong.</div></details>
+
+      <details class="faq"><summary>Does the calculator account for share price growth?</summary>
+        <div class="a">Yes. Grant dollars are converted to a share count at the grant-date price, then each vesting tranche is valued at the projected price for its vest year. Grant-size growth and share-price appreciation are separate inputs because they are separate things.</div></details>
+
+      <details class="faq"><summary>What are the conservative, medium and aggressive scenarios?</summary>
+        <div class="a">Three sets of assumptions covering share-price appreciation, merit increase, bonus payout multiplier, refresher grant growth, and how long refreshers continue. Every value is editable. The seeded medium share-price figure of 7%/yr is a long-run broad-market nominal assumption, not a forecast for any specific company.</div></details>
+
+      <details class="faq"><summary>Are the numbers before or after tax?</summary>
+        <div class="a">Gross, before any tax. RSUs are ordinary income at vest at the vest-date price, and are typically subject to statutory supplemental withholding that may sit below your marginal rate. Your take-home will be materially lower than the totals shown.</div></details>
+
+      <details class="faq"><summary>Is the calculator free and does it require an account?</summary>
+        <div class="a">Free, with no account, email address or signup. PDF and Excel exports are also free and ungated. All calculation happens in your browser &mdash; your offer details are never sent to a server.</div></details>
+
+      <details class="faq"><summary>Can I use trailing stock performance to set the growth rate?</summary>
+        <div class="a">You can look up a ticker's trailing one-year and five-year performance and see it displayed next to the appreciation input as context. It is deliberately not applied automatically. Past performance does not indicate future results, and a hot ticker's trailing CAGR compounded over ten years produces a meaningless number. A configurable 20%/yr ceiling is applied by default, and the uncapped figure stays visible so the cap is never silent.</div></details>
+
+      <details class="faq"><summary>How many offers can I compare?</summary>
+        <div class="a">Up to six, including one flagged as your current compensation baseline. The baseline runs through the same engine &mdash; it simply usually has no initial grant.</div></details>
+
+      <details class="faq"><summary>Can I model a private company with no public share price?</summary>
+        <div class="a">Yes. Flag the offer as private, which disables market data lookup and requires you to enter a price per share yourself. Bear in mind that a 409A valuation is not a market price and that private-company equity carries liquidity risk this model does not capture.</div></details>
+
+    </div>
+  </div>
+</div>
+
+<!-- AD SLOT C — end of content, before the footer. Standard end-of-article
+     position; users who reach it have finished reading. -->
+<div class="wrap">
+  <div class="ad ad-footer" id="ad-footer" aria-hidden="true">
+    <ins class="adsbygoogle" style="display:block;width:100%"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="0000000003"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <span class="ad-placeholder">Advertisement</span>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>bigtechcalc.com</h4>
+        <p>
+          A compensation modelling tool for people comparing job offers. Built and maintained by
+          PEFG, PLLC.
+        </p>
+      </div>
+      <div>
+        <h4>Tool</h4>
+        <p>
+          <a href="#calculator">Calculator</a><br>
+          <a href="#how-it-works">How it works</a><br>
+          <a href="#faq">FAQ</a>
+        </p>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <p>
+          <a href="/privacy.html">Privacy</a><br>
+          <a href="/terms.html">Terms</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p style="margin-bottom:8px">
+        <strong>This is a modelling tool, not financial advice.</strong> All figures are gross and
+        exclude all taxes. Projections are arithmetic consequences of assumptions you supply; they
+        are not predictions. Past share price performance does not indicate future results. Vesting
+        schedule templates are editable examples, not statements of any named employer's current
+        policy &mdash; enter the terms in your own offer letter.
+      </p>
+      <p class="mb0">&copy; <span id="year">2026</span> PEFG, PLLC. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  // Initialise AdSense slots. Guarded so the page works with the script blocked.
+  window.addEventListener('load', function () {
+    try {
+      var n = document.querySelectorAll('ins.adsbygoogle').length;
+      for (var i = 0; i < n; i++) (adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) { /* ad blocker or no network — page is fully functional without ads */ }
+  });
+</script>
+</body>
+</html>

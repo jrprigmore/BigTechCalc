@@ -1,0 +1,49 @@
+[build]
+  publish   = "site"
+  functions = "site/netlify/functions"
+  command   = ""
+
+[functions]
+  node_bundler = "esbuild"
+
+# ---------------------------------------------------------------------
+# Security headers. Google's page-experience signals do not read these
+# directly, but a clean header set avoids browser console warnings and
+# is a prerequisite for any future ad-fraud or brand-safety review.
+# ---------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options    = "nosniff"
+    X-Frame-Options           = "SAMEORIGIN"
+    Referrer-Policy           = "strict-origin-when-cross-origin"
+    Permissions-Policy        = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# Static assets are content-addressed by deploy, safe to cache hard.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# JS and CSS change between deploys and are not fingerprinted, so
+# revalidate rather than cache blind.
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ---------------------------------------------------------------------
+# Canonical host. Pick ONE and redirect the other, or Google will split
+# link equity between them.
+# ---------------------------------------------------------------------
+[[redirects]]
+  from = "https://www.bigtechcalc.com/*"
+  to   = "https://bigtechcalc.com/:splat"
+  status = 301
+  force = true
