@@ -236,6 +236,7 @@ export function blankOffer(overrides = {}) {
     ticker: '',
     isPrivate: false,
     isBaseline: false,
+    noEquity: false, // true = salary/bonus/sign-on only; grant inputs are ignored, not cleared
 
     startYear: new Date().getFullYear(),
 
@@ -308,6 +309,8 @@ function priceAt(grantPrice, appreciation, t) {
  * Returns [{ kind, label, grantYear, tOffset, value, price, shares }]
  */
 export function buildGrants(offer, scenario) {
+  if (offer.noEquity) return [];
+
   const grants = [];
   const appr = scenario.priceAppreciation;
 
@@ -361,10 +364,10 @@ export function projectOffer(offer, scenario, horizonYears = 10) {
   const initVal = validateSchedule(offer.initialSchedule);
   const refVal = validateSchedule(offer.refresherSchedule);
   const errors = [];
-  if (offer.initialGrantValue > 0 && !initVal.ok) {
+  if (!offer.noEquity && offer.initialGrantValue > 0 && !initVal.ok) {
     errors.push(...initVal.errors.map((e) => `Initial grant schedule: ${e}`));
   }
-  if (offer.refresherValue > 0 && !refVal.ok) {
+  if (!offer.noEquity && offer.refresherValue > 0 && !refVal.ok) {
     errors.push(...refVal.errors.map((e) => `Refresher schedule: ${e}`));
   }
   if (offer.signOnTotal > 0) {

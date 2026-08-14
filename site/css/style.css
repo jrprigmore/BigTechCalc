@@ -160,6 +160,7 @@ input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--navy-mid
 }
 
 fieldset { border: 0; padding: 0; margin: 0 0 6px; }
+.grey-out { opacity: .42; pointer-events: none; filter: grayscale(.5); }
 legend {
   font-family: var(--mono); font-size: .68rem; letter-spacing: .11em;
   text-transform: uppercase; color: var(--navy-mid); font-weight: 600;

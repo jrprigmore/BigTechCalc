@@ -16,7 +16,7 @@ import {
 /* State                                                               */
 /* ------------------------------------------------------------------ */
 
-const MAX_OFFERS = 6;
+const MAX_OFFERS = 5; // hard limit — keeps the annual-composition chart (all offers side by side) readable
 
 // Offer line colours, drawn from the PEFG family. Burgundy is reserved
 // for errors and warnings and is deliberately not in this list.
@@ -334,7 +334,14 @@ function offerPane(o) {
         signOnCells, soTotalEl)));
 
   // --- Equity ---
-  const equity = el('fieldset', {}, el('legend', {}, 'Equity'),
+  const equityToggle = el('div', { class: 'inline', style: 'margin-bottom:12px' },
+    el('input', {
+      type: 'checkbox', id: 'noeq-' + o.id, checked: o.noEquity ? '' : null,
+      onChange: (e) => { o.noEquity = e.target.checked; scheduleRecalc(); render(); },
+    }),
+    el('label', { for: 'noeq-' + o.id }, 'No equity grant — salary and bonus only'));
+
+  const equityFields = el('div', { class: o.noEquity ? 'grey-out' : '' },
     el('div', { class: 'grid-3' },
       numField('Grant-date share price', o.grantPrice, set('grantPrice'), {
         min: 0.01, step: '0.01',
@@ -355,6 +362,12 @@ function offerPane(o) {
       numField('Refresher slots', o.refresherSlots, (v) => { o.refresherSlots = Math.round(v); scheduleRecalc(); }, { min: 0, step: '1' })),
     el('div', {},
       vestEditor('Refresher vesting', o.refresherSchedule, (s) => { o.refresherSchedule = s; scheduleRecalc(); })));
+
+  if (o.noEquity) {
+    for (const inp of $$('input, select, button', equityFields)) inp.disabled = true;
+  }
+
+  const equity = el('fieldset', {}, el('legend', {}, 'Equity'), equityToggle, equityFields);
 
   pane.append(tickerRow, privacyRow, cash, signon, equity);
 
@@ -553,28 +566,38 @@ function drawCumulativeChart(container, legendEl) {
   container.appendChild(svg);
 }
 
-function drawCompositionChart(container, legendEl, offerId) {
+function drawCompositionChart(container, legendEl) {
   container.innerHTML = '';
   legendEl.innerHTML = '';
   const R = state.results;
   if (!R) return;
-  const res = R.byScenario[state.displayScenario].find((r) => r.offerId === offerId)
-           || R.byScenario[state.displayScenario][0];
-  if (!res) return;
+  // Every offer, side by side, per year — capped by MAX_OFFERS (5) so the
+  // grouped bars stay readable. No per-offer selector; this is the point.
+  const results = R.byScenario[state.displayScenario].slice(0, MAX_OFFERS);
+  if (!results.length) return;
+
+  const horizon = Math.max(...results.map((r) => r.rows.length));
 
   const W = 880, H = 320;
   const M = { t: 14, r: 18, b: 38, l: 66 };
   const iw = W - M.l - M.r, ih = H - M.t - M.b;
-  const rows = res.rows;
-  const maxY = niceMax(Math.max(...rows.map((r) => r.total)) * 1.05);
+  const maxY = niceMax(
+    Math.max(...results.flatMap((r) => r.rows.map((row) => row.total))) * 1.05
+  );
 
-  const bw = Math.min(46, (iw / rows.length) * 0.66);
-  const X = (i) => M.l + (i + 0.5) * (iw / rows.length) - bw / 2;
+  const nOffers = results.length;
+  const groupW = iw / horizon;
+  const groupGap = groupW * 0.16;
+  const barGap = 1.5;
+  const barW = Math.max(1, (groupW - groupGap * 2 - barGap * (nOffers - 1)) / nOffers);
+
+  const groupX = (yi) => M.l + yi * groupW + groupGap;
+  const barX = (yi, oi) => groupX(yi) + oi * (barW + barGap);
   const Y = (v) => M.t + ih - (v / maxY) * ih;
 
   const svg = svgEl('svg', {
     viewBox: `0 0 ${W} ${H}`, role: 'img',
-    'aria-label': `Annual gross compensation for ${res.company} broken into base salary, bonus, sign-on, initial grant vest and refresher vest.`,
+    'aria-label': `Annual gross compensation for each offer, side by side, broken into base salary, bonus, sign-on, initial grant vest and refresher vest.`,
   });
 
   for (let g = 0; g <= 4; g++) {
@@ -593,29 +616,45 @@ function drawCompositionChart(container, legendEl, offerId) {
     ['refresherVest', 'Refresher vest'],
   ];
 
-  rows.forEach((row, i) => {
-    let acc = 0;
-    for (const [key] of parts) {
-      const v = row[key];
-      if (v <= 0) continue;
+  for (let yi = 0; yi < horizon; yi++) {
+    results.forEach((res, oi) => {
+      const row = res.rows[yi];
+      if (!row) return;
+      const bx = barX(yi, oi);
+      let acc = 0;
+      for (const [key] of parts) {
+        const v = row[key];
+        if (v <= 0) continue;
+        svg.appendChild(svgEl('rect', {
+          x: bx, y: Y(acc + v), width: barW, height: Math.max(0, Y(acc) - Y(acc + v)),
+          fill: COMPONENT_COLORS[key],
+        }));
+        acc += v;
+      }
+      // Thin offer-identity marker atop each bar — colour matches the
+      // cumulative chart's series colour and this section's legend.
       svg.appendChild(svgEl('rect', {
-        x: X(i), y: Y(acc + v), width: bw, height: Math.max(0, Y(acc) - Y(acc + v)),
-        fill: COMPONENT_COLORS[key],
+        x: bx, y: Math.max(M.t, Y(acc) - 3), width: barW, height: 3,
+        fill: SERIES_COLORS[oi % SERIES_COLORS.length],
       }));
-      acc += v;
-    }
+    });
     const t = svgEl('text', {
-      x: X(i) + bw / 2, y: H - 14, 'text-anchor': 'middle',
+      x: groupX(yi) + (groupW - groupGap * 2) / 2, y: H - 14, 'text-anchor': 'middle',
       fill: '#6B7A90', 'font-size': 11, 'font-family': 'IBM Plex Mono, monospace',
     });
-    t.textContent = 'Y' + row.yearIndex;
+    t.textContent = 'Y' + (yi + 1);
     svg.appendChild(t);
-  });
+  }
 
   for (const [key, label] of parts) {
     legendEl.appendChild(el('span', {},
       el('i', { class: 'sw', style: `background:${COMPONENT_COLORS[key]}` }), label));
   }
+  results.forEach((res, oi) => {
+    legendEl.appendChild(el('span', {},
+      el('i', { class: 'sw', style: `background:${SERIES_COLORS[oi % SERIES_COLORS.length]}` }),
+      res.company + (res.offerId === state.baselineId ? ' (baseline)' : '')));
+  });
   container.appendChild(svg);
 }
 
@@ -847,7 +886,7 @@ function renderCapNotice() {
 }
 
 function syncOfferSelects() {
-  for (const sel of ['#compositionOffer', '#detailOffer', '#ledgerOffer', '#baselineSel']) {
+  for (const sel of ['#detailOffer', '#ledgerOffer', '#baselineSel']) {
     const s = $(sel);
     const prev = s.value;
     s.innerHTML = '';
@@ -872,7 +911,7 @@ function renderResults() {
     state.scenarios[state.displayScenario].name + ' scenario';
   renderStats();
   drawCumulativeChart($('#chartCumulative'), $('#legendCumulative'));
-  drawCompositionChart($('#chartComposition'), $('#legendComposition'), $('#compositionOffer').value);
+  drawCompositionChart($('#chartComposition'), $('#legendComposition'));
   renderDetailTable();
   renderLedger();
   renderCrossover();
@@ -1085,8 +1124,6 @@ function init() {
   }
 
   $('#addOffer').addEventListener('click', addOffer);
-  $('#compositionOffer').addEventListener('change', () =>
-    drawCompositionChart($('#chartComposition'), $('#legendComposition'), $('#compositionOffer').value));
   $('#detailOffer').addEventListener('change', renderDetailTable);
   $('#ledgerOffer').addEventListener('change', renderLedger);
 
