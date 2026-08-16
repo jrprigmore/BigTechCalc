@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>RSU Vesting Schedule Explained — 4-Year Cliff &amp; More</title>
+<meta name="description" content="How RSU vesting schedules actually work — even, front-loaded, back-loaded, cliffs, and quarterly vesting. Free tools included to model your own grant.">
+<link rel="canonical" href="https://bigtechcalc.com/equity-vesting-schedule-explained.html">
+
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="PEFG, PLLC">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bigtechcalc.com/equity-vesting-schedule-explained.html">
+<meta property="og:site_name" content="bigtechcalc.com">
+<meta property="og:title" content="RSU Vesting Schedule Explained — 4-Year Cliff & More">
+<meta property="og:description" content="Even, front-loaded, back-loaded, cliffs, quarterly vesting — what each shape means for your first year and your fourth, with worked numbers.">
+<meta property="og:image" content="https://bigtechcalc.com/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RSU Vesting Schedule Explained">
+<meta name="twitter:description" content="How vesting cliffs, cadence and shape actually work, with worked numbers. Free.">
+<meta name="twitter:image" content="https://bigtechcalc.com/assets/og-card.png">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@600;700&display=swap">
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- Google AdSense. Loaded async so it never blocks first paint. -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2777336178892543" crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://bigtechcalc.com/equity-vesting-schedule-explained.html#article",
+      "headline": "RSU Vesting Schedule Explained: The 4-Year Cliff and Every Common Shape",
+      "url": "https://bigtechcalc.com/equity-vesting-schedule-explained.html",
+      "description": "How RSU vesting schedules actually work — even, front-loaded, back-loaded, cliffs, and quarterly vesting, with worked numbers on a $400,000 grant.",
+      "author": { "@id": "https://bigtechcalc.com/#org" },
+      "publisher": { "@id": "https://bigtechcalc.com/#org" },
+      "datePublished": "2026-08-16",
+      "dateModified": "2026-08-16"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://bigtechcalc.com/#org",
+      "name": "PEFG, PLLC",
+      "url": "https://bigtechcalc.com/"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://bigtechcalc.com/equity-vesting-schedule-explained.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a vesting schedule?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The timetable that converts a granted RSU award into shares you actually own, in stages, conditional on staying employed through each stage. A grant is a promise; a vest event is the promise being kept for one slice of it." }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if I leave before my cliff?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You forfeit the entire grant that cliff applies to. A one-year cliff means leaving at month eleven yields zero shares from that grant, not a prorated eleven-twelfths. This is the single most consequential date in a new-hire equity package and is worth confirming in writing, not inferring from a template." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a front-loaded or back-loaded schedule better for me?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It depends entirely on how long you plan to stay. Front-loaded vesting favors someone who may leave in year two or three, since more value is already realized. Back-loaded vesting favors someone planning to stay the full term, and is also a retention tool from the employer's side for exactly that reason — later years pay disproportionately more to leave behind." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does my vesting schedule apply to refresher grants too?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not automatically, and often not at all. A refresher is a separate grant with its own grant date and, frequently, its own schedule and its own cliff. Check your specific refresher grant documentation rather than assuming it mirrors your initial grant." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do some vesting schedules start counting in the grant year and others a year later?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Both conventions exist and neither is universal. Some companies vest the first tranche in the grant year itself; most vest the first tranche one year after the grant date. The difference shifts an entire multi-year projection by one year and is worth confirming explicitly rather than assuming." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="bigtechcalc.com home">
+      <svg width="252" height="46" viewBox="0 0 252 46" role="img" aria-label="bigtechcalc.com">
+        <rect x="0"  y="30" width="8" height="14" fill="#7FA8CC"/>
+        <rect x="11" y="22" width="8" height="22" fill="#7FA8CC"/>
+        <rect x="22" y="12" width="8" height="32" fill="#7FA8CC"/>
+        <rect x="33" y="2"  width="8" height="42" fill="#F0D080"/>
+        <text x="52" y="33" font-family="IBM Plex Serif, Georgia, serif" font-size="25" font-weight="600" fill="#F0EDE6">bigtech<tspan fill="#F0D080">calc</tspan></text>
+      </svg>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">&#9776;</button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <a href="/">Full calculator</a>
+      <a href="/rsu-refresher-calculator.html">Refresher calculator</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Cliffs, cadence, and the shapes that actually get used</p>
+    <h1>RSU Vesting Schedules Explained</h1>
+    <p class="lede">
+      &ldquo;Four-year vesting&rdquo; describes a duration, not a shape &mdash; and the shape changes what
+      your first year and your fourth year are actually worth by tens of thousands of dollars on an
+      identical grant. Here's every common pattern, what a cliff actually does, and how to read what
+      your own offer letter says instead of assuming a template.
+    </p>
+  </div>
+</section>
+
+<div class="content">
+  <div class="wrap">
+    <div class="narrow">
+
+      <h2>What a vesting schedule actually is</h2>
+      <p>
+        A grant is a promise. A <strong>vesting schedule</strong> is the timetable that converts pieces of
+        that promise into shares you actually own, conditional on staying employed through each stage.
+        Nothing is yours until it vests &mdash; a $400,000 grant that you leave four months after receiving,
+        before any of it has vested, is worth exactly zero. This is the mechanic that makes equity a
+        retention tool as much as a compensation tool, and it's why the shape of the schedule matters as
+        much as the headline dollar figure.
+      </p>
+      <p>
+        Every vesting schedule is defined by two things: a <strong>cadence</strong> (how often tranches
+        vest &mdash; annually, quarterly, or monthly) and a <strong>shape</strong> (what percentage vests
+        at each interval). A cliff, where it exists, is a special first interval during which nothing
+        vests at all. None of these are standardized. Two offers both described as &ldquo;four-year
+        vesting&rdquo; can pay out on completely different curves.
+      </p>
+
+      <h2>The four shapes you'll actually see</h2>
+
+      <h3>Even (graded) vesting — 25/25/25/25</h3>
+      <p>
+        The simplest shape: an equal quarter of the grant vests at the end of each year. On a $400,000
+        grant, that's $100,000 per year, every year, for four years. It's easy to reason about and it's
+        the shape most people picture when they hear &ldquo;four-year vesting,&rdquo; but it is not the
+        most common shape at large technology employers &mdash; front-loaded and back-loaded schedules are
+        both more common in practice, for reasons that cut in opposite directions.
+      </p>
+
+      <h3>Front-loaded vesting — for example 40/28/20/12</h3>
+      <p>
+        More value vests early, less later. On the same $400,000 grant: $160,000 in year one, $112,000 in
+        year two, $80,000 in year three, $48,000 in year four. This shape is attractive to a new hire
+        specifically because it de-risks the first year or two &mdash; you're not betting four years of
+        patience on a job you've had for one month. It's also, not coincidentally, a shape some employers
+        use for exactly that reason: it makes an offer look larger in year one, which is the number most
+        candidates anchor on when comparing offers.
+      </p>
+
+      <h3>Back-loaded vesting — for example 5/15/40/40</h3>
+      <p>
+        The mirror image: $20,000 in year one, $60,000 in year two, $160,000 in year three, $160,000 in
+        year four, on the same grant. This is a retention mechanic, plainly stated &mdash; the cost of
+        leaving climbs sharply in years three and four, which is exactly when an employer most wants to
+        discourage it. If you're evaluating an offer with this shape, the honest comparison point isn't
+        year-one total compensation; it's whether you're actually planning to stay three-plus years, because
+        that's the horizon this shape is priced for.
+      </p>
+
+      <h3>Even five-year vesting — 20/20/20/20/20</h3>
+      <p>
+        Less common for initial grants, more common for certain senior or specialized roles, and
+        occasionally used to make a headline grant number look larger while actually paying out more
+        slowly per year than a four-year even schedule would. $400,000 over five years even is $80,000 a
+        year &mdash; noticeably less annually than the same dollar amount over four years, despite the
+        larger total.
+      </p>
+
+      <h2>The one-year cliff, specifically</h2>
+      <p>
+        A <strong>cliff</strong> is a period at the start of a vesting schedule during which nothing vests
+        at all, followed by a lump vest once the cliff date is reached. The standard pattern pairs a
+        one-year cliff with monthly vesting after: 25% vests exactly at the twelve-month mark, and the
+        remaining 75% vests in equal monthly installments over the following three years.
+      </p>
+      <p>
+        The consequence that matters most: <strong>leaving before the cliff date forfeits the entire
+        grant, not a prorated share of it.</strong> Someone who leaves at month eleven walks away with
+        nothing from that grant. Someone who leaves at month thirteen has already vested a full quarter of
+        it. That one-month difference is worth 25% of a multi-hundred-thousand-dollar grant, which is why
+        the exact cliff date &mdash; not just &ldquo;one year&rdquo; as a rough description &mdash; is worth
+        getting in writing.
+      </p>
+      <p>
+        Cliffs exist for an obvious reason: they protect the employer from paying out equity to someone who
+        leaves almost immediately. They're close to universal on initial grants at large technology
+        employers and far less consistent on refresher grants, which sometimes carry no cliff at all since
+        the recipient is, by definition, already a proven retained employee.
+      </p>
+
+      <h2>Quarterly and monthly vesting, and why the granularity matters</h2>
+      <p>
+        Annual vesting is the easiest to model and the easiest to describe, but a meaningful share of real
+        offers vest quarterly or monthly after an initial cliff &mdash; smoother income, but also more
+        vest events to track, and more vest-date share prices that determine what each tranche is actually
+        worth. A grant that vests monthly has forty-eight separate vest dates over four years, each priced
+        independently at whatever the stock happens to be worth that day. Annual vesting has four. Both
+        pay out the same total share count on the same schedule shape; the difference is how smoothly that
+        income arrives and how much any single day's share price can matter to any single tranche.
+      </p>
+
+      <h2>Vesting schedule vs. refresher schedule — not the same thing</h2>
+      <p>
+        A vesting schedule describes how <em>one grant</em> pays out over time. It does not automatically
+        apply to grants made later. A <strong>refresher</strong> &mdash; an additional grant issued on top
+        of your initial one, typically annually &mdash; is a separate grant with its own grant date and,
+        frequently, its own schedule and its own cliff (or no cliff at all). Assuming your refreshers
+        inherit your initial grant's schedule is a common and costly modelling mistake. Confirm each grant's
+        terms independently. The mechanics of how multiple grants with different schedules and different
+        start dates overlap &mdash; and why that overlap is the thing most compensation spreadsheets get
+        wrong &mdash; is the entire subject of the
+        <a href="/rsu-refresher-calculator.html">RSU refresher calculator</a>.
+      </p>
+
+      <h2>First-vest timing: grant year, or the year after?</h2>
+      <p>
+        One more detail that's easy to assume incorrectly: does the first tranche of a schedule vest
+        <em>in</em> the grant year, or one year <em>after</em> the grant date? Both conventions exist. Most
+        new-hire grants use the latter &mdash; nothing vests in year one of employment, and the first
+        tranche lands at the one-year mark &mdash; but some plans, and some legacy compensation
+        spreadsheets, use the former. This single toggle shifts an entire multi-year projection by exactly
+        one year and changes no dollar amounts, which makes it easy to get wrong silently: the totals still
+        add up, they're just all labelled one year off. Confirm which convention your actual offer letter
+        uses rather than assuming.
+      </p>
+
+      <h2>How to read your own offer letter</h2>
+      <p>
+        Templates are useful for understanding shapes, not for substituting your own numbers. When you have
+        an actual offer or grant letter in hand, look for four specific things: the <strong>total grant
+        value or share count</strong>, the <strong>vesting commencement date</strong> (which is not always
+        the same as your start date), the <strong>cliff length</strong> if any, and the <strong>vesting
+        cadence</strong> after the cliff. If any of these four aren't stated explicitly, ask &mdash; a
+        vague &ldquo;standard four-year vesting&rdquo; description in an offer letter could mean any of the
+        shapes above, and the difference between them is real money in specific years, not a rounding
+        error.
+      </p>
+
+      <h2>Worked comparison: the same $400,000 grant, four ways</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Shape</th><th class="num">Year 1</th><th class="num">Year 2</th><th class="num">Year 3</th><th class="num">Year 4</th><th class="num">Year 5</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Even 4-year (25/25/25/25)</td><td class="num">$100,000</td><td class="num">$100,000</td><td class="num">$100,000</td><td class="num">$100,000</td><td class="num">&mdash;</td></tr>
+            <tr><td>Front-loaded 4-year (40/28/20/12)</td><td class="num">$160,000</td><td class="num">$112,000</td><td class="num">$80,000</td><td class="num">$48,000</td><td class="num">&mdash;</td></tr>
+            <tr><td>Back-loaded 4-year (5/15/40/40)</td><td class="num">$20,000</td><td class="num">$60,000</td><td class="num">$160,000</td><td class="num">$160,000</td><td class="num">&mdash;</td></tr>
+            <tr><td>Even 5-year (20 &times; 5)</td><td class="num">$80,000</td><td class="num">$80,000</td><td class="num">$80,000</td><td class="num">$80,000</td><td class="num">$80,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="panel-note mt16">
+        All four rows sum to $400,000 and assume 0% share price appreciation, so the only variable is
+        timing. Add price appreciation, a refresher policy, and a real vesting-commencement date, and the
+        differences compound &mdash; which is what the calculators below are for.
+      </p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+
+      <details class="faq"><summary>What is a vesting schedule?</summary>
+        <div class="a">The timetable that converts a granted RSU award into shares you actually own, in stages, conditional on staying employed through each stage. A grant is a promise; a vest event is the promise being kept for one slice of it.</div></details>
+
+      <details class="faq"><summary>What happens if I leave before my cliff?</summary>
+        <div class="a">You forfeit the entire grant that cliff applies to. A one-year cliff means leaving at month eleven yields zero shares from that grant, not a prorated eleven-twelfths. This is the single most consequential date in a new-hire equity package and is worth confirming in writing, not inferring from a template.</div></details>
+
+      <details class="faq"><summary>Is a front-loaded or back-loaded schedule better for me?</summary>
+        <div class="a">It depends entirely on how long you plan to stay. Front-loaded vesting favors someone who may leave in year two or three, since more value is already realized. Back-loaded vesting favors someone planning to stay the full term, and is also a retention tool from the employer's side for exactly that reason — later years pay disproportionately more to leave behind.</div></details>
+
+      <details class="faq"><summary>Does my vesting schedule apply to refresher grants too?</summary>
+        <div class="a">Not automatically, and often not at all. A refresher is a separate grant with its own grant date and, frequently, its own schedule and its own cliff. Check your specific refresher grant documentation rather than assuming it mirrors your initial grant.</div></details>
+
+      <details class="faq"><summary>Why do some vesting schedules start counting in the grant year and others a year later?</summary>
+        <div class="a">Both conventions exist and neither is universal. Some companies vest the first tranche in the grant year itself; most vest the first tranche one year after the grant date. The difference shifts an entire multi-year projection by one year and is worth confirming explicitly rather than assuming.</div></details>
+
+      <p class="mt16" style="margin-bottom:0">
+        Ready to put real numbers behind one of these shapes? Model a single refresher policy in the
+        <a href="/rsu-refresher-calculator.html">RSU refresher calculator</a>, or compare a full offer
+        &mdash; base, bonus, sign-on and equity together &mdash; in the
+        <a href="/">main compensation calculator</a>.
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="ad ad-footer" id="ad-footer" aria-hidden="true">
+    <ins class="adsbygoogle" style="display:block;width:100%"
+         data-ad-client="ca-pub-2777336178892543"
+         data-ad-slot="0000000006"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <span class="ad-placeholder">Advertisement</span>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>bigtechcalc.com</h4>
+        <p>
+          A compensation modelling tool for people comparing job offers. Built and maintained by
+          PEFG, PLLC.
+        </p>
+      </div>
+      <div>
+        <h4>Tool</h4>
+        <p>
+          <a href="/">Full calculator</a><br>
+          <a href="/rsu-refresher-calculator.html">Refresher calculator</a><br>
+          <a href="/#faq">General FAQ</a>
+        </p>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <p>
+          <a href="/privacy.html">Privacy</a><br>
+          <a href="/terms.html">Terms</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p style="margin-bottom:8px">
+        <strong>This is a modelling tool, not financial advice.</strong> All figures are gross and
+        exclude all taxes. Projections are arithmetic consequences of assumptions you supply; they
+        are not predictions. Past share price performance does not indicate future results. Vesting
+        schedule templates are editable examples, not statements of any named employer's current
+        policy &mdash; enter the terms in your own offer letter.
+      </p>
+      <p class="mb0">&copy; <span id="year">2026</span> PEFG, PLLC. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  window.addEventListener('load', function () {
+    try {
+      var n = document.querySelectorAll('ins.adsbygoogle').length;
+      for (var i = 0; i < n; i++) (adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) { /* ad blocker or no network — page is fully functional without ads */ }
+  });
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var nav = document.getElementById('site-nav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
+</body>
+</html>

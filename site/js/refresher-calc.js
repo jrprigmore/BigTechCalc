@@ -114,7 +114,8 @@ function renderScheduleEditor() {
     btnRow,
     el('p', { class: 'hint mt16' },
       'Annual only. Quarterly/monthly schedules with cliffs, plus full multi-offer comparison, are in the ',
-      el('a', { href: '/#calculator' }, 'main calculator'), '.'));
+      el('a', { href: '/#calculator' }, 'main calculator'), '. See ',
+      el('a', { href: '/equity-vesting-schedule-explained.html' }, 'how each shape pays out'), '.'));
 
   function refreshTotal() {
     const t = scheduleTotal();
