@@ -128,11 +128,13 @@
         <text x="52" y="33" font-family="IBM Plex Serif, Georgia, serif" font-size="25" font-weight="600" fill="#F0EDE6">bigtech<tspan fill="#F0D080">calc</tspan></text>
       </svg>
     </a>
-    <nav class="site-nav" aria-label="Primary">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">&#9776;</button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
       <a href="#calculator">Calculator</a>
       <a href="#results">Results</a>
       <a href="#how-it-works">How it works</a>
       <a href="#faq">FAQ</a>
+      <a href="/rsu-refresher-calculator.html">Refresher calculator</a>
     </nav>
   </div>
 </header>
@@ -509,7 +511,8 @@
         <p>
           <a href="#calculator">Calculator</a><br>
           <a href="#how-it-works">How it works</a><br>
-          <a href="#faq">FAQ</a>
+          <a href="#faq">FAQ</a><br>
+          <a href="/rsu-refresher-calculator.html">RSU refresher calculator</a>
         </p>
       </div>
       <div>
@@ -543,6 +546,22 @@
       for (var i = 0; i < n; i++) (adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) { /* ad blocker or no network — page is fully functional without ads */ }
   });
+  // Mobile nav toggle.
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var nav = document.getElementById('site-nav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
 </script>
 </body>
 </html>

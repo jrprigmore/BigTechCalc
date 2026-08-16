@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>RSU Refresher Calculator — Overlapping Grant Vesting</title>
+<meta name="description" content="See exactly how RSU refreshers overlap year to year — one row per grant, not a rolling-window guess. Free tool, no signup, results in seconds.">
+<link rel="canonical" href="https://bigtechcalc.com/rsu-refresher-calculator.html">
+
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="PEFG, PLLC">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bigtechcalc.com/rsu-refresher-calculator.html">
+<meta property="og:site_name" content="bigtechcalc.com">
+<meta property="og:title" content="RSU Refresher Calculator — Overlapping Grant Vesting">
+<meta property="og:description" content="Model your own refresher policy and watch concurrent grants stack toward steady state — one ledger row per vest event, free, no signup.">
+<meta property="og:image" content="https://bigtechcalc.com/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RSU Refresher Calculator">
+<meta name="twitter:description" content="Model overlapping RSU refresher grants year by year. Free, no signup.">
+<meta name="twitter:image" content="https://bigtechcalc.com/assets/og-card.png">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@600;700&display=swap">
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- Google AdSense. Loaded async so it never blocks first paint. -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2777336178892543" crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://bigtechcalc.com/rsu-refresher-calculator.html#app",
+      "name": "RSU Refresher Calculator",
+      "url": "https://bigtechcalc.com/rsu-refresher-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "description": "Models a single RSU refresher policy in isolation, showing overlapping vesting tranches year by year as an explicit ledger rather than a rolling-window sum.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "isPartOf": { "@id": "https://bigtechcalc.com/#app" },
+      "publisher": { "@id": "https://bigtechcalc.com/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://bigtechcalc.com/#org",
+      "name": "PEFG, PLLC",
+      "url": "https://bigtechcalc.com/"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://bigtechcalc.com/rsu-refresher-calculator.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an RSU refresher grant?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A refresher is an additional RSU grant issued on top of whatever is still vesting from prior grants, usually once a year. It exists because a new-hire's initial grant eventually runs out; the refresher is how compensation keeps pace after year one without renegotiating the whole package." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do refresher grants overlap?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Each refresher vests on its own multi-year schedule starting from its own grant date. If refreshers are issued annually on a four-year schedule, by year four the tail of the initial grant plus three refreshers are all vesting at once — four concurrent grants, each contributing a tranche. This calculator builds that as an explicit ledger, one row per vest event, instead of approximating it with a rolling-window formula." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does steady state mean?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The point at which the number of grants vesting concurrently stops increasing. On a four-year annual vesting schedule with annual refreshers, that's year four: three refreshers plus the initial grant's final tranche, and every year after looks similar in grant count, though not necessarily in dollar value if the refresher size is growing." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is grant size growth the same as share price appreciation?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, and conflating them is the most common modelling mistake in this space. Grant size growth is a compensation policy decision — this year's refresher is granted at a larger dollar value than last year's. Share price appreciation is what the stock does after the grant, which changes what already-granted shares are worth on their vest date. This calculator keeps them as separate inputs." }
+        },
+        {
+          "@type": "Question",
+          "name": "Where are taxes in this calculator?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not modelled. Every figure here is gross. RSUs are ordinary income at vest, valued at the vest-date share price, and are typically subject to statutory supplemental withholding that may sit below your marginal rate — your actual take-home will be materially lower than the totals shown." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="bigtechcalc.com home">
+      <svg width="252" height="46" viewBox="0 0 252 46" role="img" aria-label="bigtechcalc.com">
+        <rect x="0"  y="30" width="8" height="14" fill="#7FA8CC"/>
+        <rect x="11" y="22" width="8" height="22" fill="#7FA8CC"/>
+        <rect x="22" y="12" width="8" height="32" fill="#7FA8CC"/>
+        <rect x="33" y="2"  width="8" height="42" fill="#F0D080"/>
+        <text x="52" y="33" font-family="IBM Plex Serif, Georgia, serif" font-size="25" font-weight="600" fill="#F0EDE6">bigtech<tspan fill="#F0D080">calc</tspan></text>
+      </svg>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">&#9776;</button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <a href="/">Full calculator</a>
+      <a href="#refresher-calculator">Refresher tool</a>
+      <a href="#faq">FAQ</a>
+      <a href="/#faq">General FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">One grant, one ledger row, no guessing</p>
+    <h1>RSU Refresher Calculator</h1>
+    <p class="lede">
+      Model a single refresher policy on its own and watch concurrent grants stack toward steady state.
+      Free, no signup &mdash; and unlike a hand-typed spreadsheet formula, every overlapping tranche is
+      its own row, not a rolling-window sum that quietly over- or under-counts.
+    </p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <section class="panel" id="refresher-calculator">
+    <header><h2>Your refresher policy</h2></header>
+    <div class="body">
+      <p class="notice flat mb0" style="margin-bottom:14px">
+        Pre-filled with the spec's own regression fixture: a $150,000 refresher growing 3%/yr on an even
+        four-year vest, 0% price appreciation. Year 1 below is the grant year itself (nothing vests yet);
+        four years later, Year 5 should read <strong>$156,886.01</strong> &mdash; change any input to
+        model your own offer.
+      </p>
+      <div class="grid-3">
+        <div class="field">
+          <label for="grantPrice">Grant-date share price</label>
+          <input type="number" id="grantPrice" min="0.01" step="0.01">
+          <span class="hint">Price on the first refresher's grant date.</span>
+        </div>
+        <div class="field">
+          <label for="appreciationPct">Share price appreciation (%)</label>
+          <input type="number" id="appreciationPct" step="0.5">
+          <span class="hint">Separate from grant size growth below &mdash; this is what the stock itself does.</span>
+        </div>
+        <div class="field">
+          <label for="horizon">Projection horizon</label>
+          <select id="horizon">
+            <option value="5">5 years</option>
+            <option value="7">7 years</option>
+            <option value="10" selected>10 years</option>
+            <option value="15">15 years</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="field">
+          <label for="refresherValue">Refresher value, first grant ($)</label>
+          <input type="number" id="refresherValue" min="0" step="1000">
+        </div>
+        <div class="field">
+          <label for="refresherFirstYear">First refresher year</label>
+          <input type="number" id="refresherFirstYear" min="1" step="1">
+          <span class="hint">Year 1 = your first year in the role.</span>
+        </div>
+        <div class="field">
+          <label for="refresherGrowthPct">Refresher grant growth per year (%)</label>
+          <input type="number" id="refresherGrowthPct" step="0.5">
+          <span class="hint">Grant SIZE growth. Not share price.</span>
+        </div>
+      </div>
+      <div id="scheduleEditor" class="vest-editor"></div>
+    </div>
+  </section>
+
+  <div id="errorBox"></div>
+
+  <section class="panel">
+    <header><h2>Results</h2></header>
+    <div class="body">
+      <div class="stat-grid" id="statGrid"></div>
+    </div>
+    <div class="chart-box"><div id="chartRefresher"></div></div>
+    <div class="legend">
+      <span><i class="sw" style="background:#7FA8CC"></i>Ramping</span>
+      <span><i class="sw" style="background:#8A6410"></i>Steady state</span>
+    </div>
+  </section>
+
+  <section class="panel">
+    <header><h2>Year-by-year detail</h2></header>
+    <div class="body tight">
+      <div class="table-scroll"><table id="yearTable"></table></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <header><h2>Refresher tranche ledger</h2></header>
+    <div class="body tight">
+      <div class="table-scroll" style="max-height:420px;overflow-y:auto"><table id="ledgerTable"></table></div>
+    </div>
+  </section>
+
+  <!-- AD SLOT — in-content, after the tool. -->
+  <div class="ad ad-inline" id="ad-inline" aria-hidden="true">
+    <ins class="adsbygoogle" style="display:block;width:100%"
+         data-ad-client="ca-pub-2777336178892543"
+         data-ad-slot="0000000004"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <span class="ad-placeholder">Advertisement</span>
+  </div>
+
+  <p class="panel-note mt16" style="margin-bottom:32px">
+    Want to compare this offer against others, with base salary, bonus, sign-on and an initial grant in
+    the mix? The <a href="/">full multi-offer calculator</a> runs the same engine across up to five
+    offers side by side, under three growth scenarios.
+  </p>
+
+</div>
+
+<!-- ============================== SEO CONTENT ============================== -->
+<div class="content">
+  <div class="wrap">
+    <div class="narrow">
+
+      <h2>What an RSU refresher actually is</h2>
+      <p>
+        A new-hire equity grant is a one-time event, sized for a specific vesting schedule &mdash; commonly
+        four years. On its own, it produces a predictable curve: vesting ramps or tapers depending on the
+        schedule shape, then stops entirely once the grant is fully vested. Left alone, most people's
+        equity income would fall to zero in year five.
+      </p>
+      <p>
+        A <strong>refresher</strong> exists to prevent that. Most large technology employers issue an
+        additional RSU grant on top of the initial one, typically once a year, on its own independent
+        vesting schedule. The refresher doesn't replace what's still vesting from the initial grant or
+        from prior refreshers &mdash; it stacks on top of it. That stacking is the entire subject of this
+        calculator.
+      </p>
+
+      <h2>Why overlapping tranches are hard to model by hand</h2>
+      <p>
+        The natural way to model a refresher in a spreadsheet is a rolling-window formula: this year's
+        refresher income equals a fraction of this year's grant, plus a fraction of last year's, plus a
+        fraction of the year before. That works exactly as long as the number of concurrent grants never
+        changes. It breaks the moment it does &mdash; a formula written for four concurrent grants that
+        keeps being copied forward will silently include a fifth once refreshers have been running long
+        enough, overcounting that year's income by roughly the size of one full tranche.
+      </p>
+      <p>
+        This calculator doesn't use a rolling-window formula anywhere. Every grant &mdash; the initial one
+        and every refresher &mdash; generates its own set of vest events based on its own grant date and
+        its own schedule. Those events are stored as an explicit ledger, one row per vest event, and the
+        year-by-year totals are a straightforward sum over whichever ledger rows land in that year.
+        Overlap isn't a special case to handle; it falls out of the data structure automatically, which is
+        also why the ledger below is worth reading, not just the chart above it.
+      </p>
+
+      <h3>Steady state, and why year four looks different from year one</h3>
+      <p>
+        On a four-year annual vesting schedule with an annual refresher, the number of concurrent grants
+        goes 1, 2, 3, 4 &mdash; and then holds at 4 for as long as refreshers keep being issued. That
+        fourth year is <strong>steady state</strong>: the point where grant count stops climbing. It
+        doesn't mean income stops growing, though &mdash; if refresher size grows year over year (a
+        separate input in this tool, see below), or the share price appreciates, total income can keep
+        rising even after concurrent grant count flattens. What steady state tells you is that the
+        <em>ramp</em> is over. Years one through three are structurally different from every year after;
+        comparing offers on year-one numbers alone compares two offers at their least representative
+        point.
+      </p>
+
+      <h3>Two growth rates that are not the same thing</h3>
+      <p>
+        This tool asks for two separate growth inputs on purpose. <strong>Refresher grant growth</strong>
+        is a compensation policy choice &mdash; the employer decides this year's refresher is worth more
+        dollars than last year's, independent of anything the stock does. <strong>Share price
+        appreciation</strong> is what happens to the stock after a grant is made, and it changes the value
+        of shares that were already granted, at whatever price they're worth on each vest date. A model
+        that only grows the grant size and never touches the share price will report that a $150,000
+        grant pays out exactly $150,000 no matter what the company's stock does over the next four years.
+        That's the single largest defect in most DIY compensation spreadsheets, and it's why this
+        calculator converts every grant dollar amount into a share count at the grant-date price, then
+        revalues each vesting tranche at the price on its own vest date.
+      </p>
+
+      <h2>How to read the results</h2>
+      <p>
+        The <strong>chart</strong> shows refresher income by year, with steady-state years shaded
+        differently from the ramp. The <strong>year-by-year table</strong> adds cumulative income and a
+        concurrent-grants count &mdash; watch that column to see the ramp happen, and confirm it plateaus
+        rather than keeps climbing (a still-climbing concurrent-grants count deep into the horizon usually
+        means the refresher schedule and refresher cadence don't actually match &mdash; for instance, a
+        five-year vest with annual refreshers reaches five concurrent grants, not four). The
+        <strong>tranche ledger</strong> is the underlying data both of those are built from: one row per
+        vest event, tagged by which grant it came from and whether it falls inside or outside your chosen
+        horizon.
+      </p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+
+      <details class="faq"><summary>What is an RSU refresher grant?</summary>
+        <div class="a">An additional RSU grant issued on top of whatever is still vesting from prior grants, usually once a year. It exists because a new-hire's initial grant eventually runs out; the refresher is how compensation keeps pace after year one without renegotiating the whole package.</div></details>
+
+      <details class="faq"><summary>Why do refresher grants overlap?</summary>
+        <div class="a">Each refresher vests on its own multi-year schedule starting from its own grant date. If refreshers are issued annually on a four-year schedule, by year four the tail of the initial grant plus three refreshers are all vesting at once &mdash; four concurrent grants, each contributing a tranche. This calculator builds that as an explicit ledger, one row per vest event, instead of approximating it with a rolling-window formula.</div></details>
+
+      <details class="faq"><summary>What does steady state mean?</summary>
+        <div class="a">The point at which the number of grants vesting concurrently stops increasing. On a four-year annual vesting schedule with annual refreshers, that's year four: three refreshers plus the initial grant's final tranche, and every year after looks similar in grant count, though not necessarily in dollar value if the refresher size is growing.</div></details>
+
+      <details class="faq"><summary>Is grant size growth the same as share price appreciation?</summary>
+        <div class="a">No, and conflating them is the most common modelling mistake in this space. Grant size growth is a compensation policy decision. Share price appreciation is what the stock does after the grant, which changes what already-granted shares are worth on their vest date. This calculator keeps them as separate inputs.</div></details>
+
+      <details class="faq"><summary>Where are taxes in this calculator?</summary>
+        <div class="a">Not modelled. Every figure here is gross. RSUs are ordinary income at vest, valued at the vest-date share price, and are typically subject to statutory supplemental withholding that may sit below your marginal rate &mdash; your actual take-home will be materially lower than the totals shown.</div></details>
+
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="ad ad-footer" id="ad-footer" aria-hidden="true">
+    <ins class="adsbygoogle" style="display:block;width:100%"
+         data-ad-client="ca-pub-2777336178892543"
+         data-ad-slot="0000000005"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <span class="ad-placeholder">Advertisement</span>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>bigtechcalc.com</h4>
+        <p>
+          A compensation modelling tool for people comparing job offers. Built and maintained by
+          PEFG, PLLC.
+        </p>
+      </div>
+      <div>
+        <h4>Tool</h4>
+        <p>
+          <a href="/">Full calculator</a><br>
+          <a href="#refresher-calculator">Refresher tool</a><br>
+          <a href="/#faq">General FAQ</a>
+        </p>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <p>
+          <a href="/privacy.html">Privacy</a><br>
+          <a href="/terms.html">Terms</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p style="margin-bottom:8px">
+        <strong>This is a modelling tool, not financial advice.</strong> All figures are gross and
+        exclude all taxes. Projections are arithmetic consequences of assumptions you supply; they
+        are not predictions. Past share price performance does not indicate future results. Vesting
+        schedule templates are editable examples, not statements of any named employer's current
+        policy &mdash; enter the terms in your own offer letter.
+      </p>
+      <p class="mb0">&copy; <span id="year">2026</span> PEFG, PLLC. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/refresher-calc.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  window.addEventListener('load', function () {
+    try {
+      var n = document.querySelectorAll('ins.adsbygoogle').length;
+      for (var i = 0; i < n; i++) (adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) { /* ad blocker or no network — page is fully functional without ads */ }
+  });
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var nav = document.getElementById('site-nav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
+</body>
+</html>

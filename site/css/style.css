@@ -84,7 +84,25 @@ a:hover { color: var(--gold-light); }
   font-weight: 500; padding: 6px 0; border-bottom: 2px solid transparent;
 }
 .site-nav a:hover { color: var(--gold-dark); border-bottom-color: var(--gold-dark); }
-@media (max-width: 720px) { .site-nav { display: none; } }
+
+.nav-toggle {
+  display: none; background: transparent; border: 1px solid rgba(240,237,230,.32);
+  color: var(--offwhite); border-radius: 4px; width: 38px; height: 34px;
+  font-size: 1.1rem; line-height: 1; cursor: pointer;
+}
+.nav-toggle:hover { border-color: var(--gold-dark); color: var(--gold-dark); }
+
+@media (max-width: 720px) {
+  .site-header .wrap { position: relative; }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  .site-nav {
+    flex-direction: column; gap: 0; position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--navy); border-bottom: 3px solid var(--gold-dark);
+    max-height: 0; overflow: hidden; visibility: hidden; transition: max-height .2s ease;
+  }
+  .site-nav.open { max-height: 320px; visibility: visible; }
+  .site-nav a { padding: 14px 20px; border-bottom: 1px solid rgba(240,237,230,.1); }
+}
 
 /* ------------------------------------------------------------------ Hero */
 
