@@ -10,14 +10,18 @@
  * what the spreadsheet actually computes, not against what the spec
  * says it computes.
  *
- * Input: /tmp/wb.json (dumped from the workbook by the python extractor)
- * Run:   node engine-tests/workbook-parity.mjs <path-to-wb.json>
+ * Input: engine-tests/out/wb.json — generate it first with
+ *        node engine-tests/extract-workbook.mjs
+ * Run:   node engine-tests/workbook-parity.mjs [path-to-wb.json]
  */
 
 import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 import { projectOffer, blankOffer, r2 } from '../site/js/engine.js';
 
-const wbPath = process.argv[2] || '/tmp/wb.json';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const wbPath = process.argv[2] || path.join(__dirname, 'out', 'wb.json');
 const wb = JSON.parse(readFileSync(wbPath, 'utf8'));
 
 // Scenario levers as they are set on the workbook's Scenarios tab.

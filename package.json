@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node engine-tests/engine.test.mjs && node engine-tests/workbook-parity.mjs",
+    "test": "node engine-tests/extract-workbook.mjs && node engine-tests/engine.test.mjs && node engine-tests/workbook-parity.mjs",
     "smoke": "node engine-tests/smoke.mjs"
   },
   "devDependencies": {
