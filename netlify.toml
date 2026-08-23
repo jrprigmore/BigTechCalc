@@ -47,3 +47,70 @@
   to   = "https://bigtechcalc.com/:splat"
   status = 301
   force = true
+
+# ---------------------------------------------------------------------
+# Netlify's "pretty URLs" post-processing serves every static page at
+# BOTH its real .html path and a second, extensionless path — e.g.
+# /terms.html and /terms are both live 200s, and /terms/ (trailing
+# slash) redirects to the extensionless duplicate rather than the real
+# canonical URL. Google was crawling all of it: the extensionless
+# duplicates show up in Search Console as "Alternate page with proper
+# canonical tag" (harmless, but it's crawl budget spent on a page that
+# was only ever going to defer to the real one) and the trailing-slash
+# form as "Page with redirect" pointing at that same duplicate instead
+# of the canonical. force=true so these win over Netlify's own
+# pretty-url resolution. Add two lines here for every new page shipped.
+# ---------------------------------------------------------------------
+[[redirects]]
+  from = "/index.html"
+  to   = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/rsu-refresher-calculator"
+  to   = "/rsu-refresher-calculator.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/rsu-refresher-calculator/"
+  to   = "/rsu-refresher-calculator.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/equity-vesting-schedule-explained"
+  to   = "/equity-vesting-schedule-explained.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/equity-vesting-schedule-explained/"
+  to   = "/equity-vesting-schedule-explained.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy"
+  to   = "/privacy.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy/"
+  to   = "/privacy.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms"
+  to   = "/terms.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms/"
+  to   = "/terms.html"
+  status = 301
+  force = true
