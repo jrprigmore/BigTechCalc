@@ -114,3 +114,15 @@
   to   = "/terms.html"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/nvidia-rsu-vesting-schedule"
+  to   = "/nvidia-rsu-vesting-schedule.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/nvidia-rsu-vesting-schedule/"
+  to   = "/nvidia-rsu-vesting-schedule.html"
+  status = 301
+  force = true

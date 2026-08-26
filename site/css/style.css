@@ -191,17 +191,19 @@ legend {
 
 /* --------------------------------------------------------------- Buttons */
 
-button {
+button, .btn {
   font-family: var(--sans); font-size: .88rem; font-weight: 500;
   padding: 8px 14px; border-radius: 4px; cursor: pointer;
   border: 1px solid var(--rule-strong); background: var(--white); color: var(--navy);
   min-height: 36px;
 }
-button:hover { background: var(--surface-2); }
-button.primary { background: var(--navy); color: var(--offwhite); border-color: var(--navy); }
-button.primary:hover { background: var(--navy-mid); }
-button.ghost { border-color: transparent; background: transparent; }
-button.ghost:hover { background: var(--surface-2); }
+.btn { display: inline-flex; align-items: center; text-decoration: none; }
+.btn:hover { text-decoration: none; }
+button:hover, .btn:hover { background: var(--surface-2); }
+button.primary, .btn.primary { background: var(--navy); color: var(--offwhite); border-color: var(--navy); }
+button.primary:hover, .btn.primary:hover { background: var(--navy-mid); color: var(--offwhite); }
+button.ghost, .btn.ghost { border-color: transparent; background: transparent; }
+button.ghost:hover, .btn.ghost:hover { background: var(--surface-2); }
 button.danger { color: var(--burgundy); border-color: rgba(139,45,64,.4); }
 button.danger:hover { background: rgba(139,45,64,.06); }
 button:disabled { opacity: .45; cursor: not-allowed; }
